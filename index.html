@@ -336,732 +336,670 @@
 
     <!-- Summary video -->
     <div class="container" style="max-width: 768px;">
-        <div id="videos" class="carousel slide" data-interval="false" data-ride="carousel">
-            <ol class="carousel-indicators hidden">
-                <li data-target="#videos" data-slide-to="0" class="active"></li>
-                <li data-target="#videos" data-slide-to="1"></li>
-                <li data-target="#videos" data-slide-to="2"></li>
-            </ol>
 
-
-            <!-- <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="grid-container-video" style="width: 90%; margin-left: auto; margin-right: auto">
-                        <div class="grid-item">
-                            <div>
-                                <h6>Video (ECCV 2022)</h6>
-                            </div>
-                        </div>
-                        <div class="embed-responsive embed-responsive-16by9" style="margin: 0;">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/56aA_FaeAPY"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
+        <div class="grid-container-video" style="width: 90%; margin-left: auto; margin-right: auto">
+            <div class="grid-item">
+                <div>
+                    <h5>Video</h5>
                 </div>
-                <div class="carousel-item">
-                    <div class="grid-container-video" style="width: 90%; margin-left: auto; margin-right: auto">
-                        <div class="grid-item">
-                            <div>
-                                <h6>Video (GauGAN2 Official)</h6>
-                            </div>
-                        </div>
-                        <div class="embed-responsive embed-responsive-16by9" style="margin: 0;">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/p9MAvRpT6Cg"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
+            </div>
+            <div class="embed-responsive embed-responsive-16by9" style="margin: 0;">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/k6cOx9YjHJc"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <hr style="max-width: 768px;">
+                <h5 class="text-center">Pipeline</h5>
+                <p>
+
+                    Our pipeline consists of a cascade of three diffusion models - a base model which can synthesize
+                    samples of 64x64 resolution, and two super-resolution stacks that can upsample the images
+                    progressively to 256x256 and 1024x1024 resolution respectively. Our models take an input caption
+                    and first compute T5 XXL embedding and text embedding. We optionally use CLIP image encodings
+                    which are computed from a reference image. These image embeddings can serve as a style vector.
+                    These embeddings are then fed into our cascaded diffusion models which progressively generate
+                    images of resolution 1024x1024.
+
+                </p>
+                <div class="row justify-content-center">
+                    <img src="images/pipeline/model_arch2.jpg" style="height: 500px;margin-bottom: 8px;">
                 </div>
-                <div class="carousel-item">
-                    <div class="grid-container-video" style="width: 90%; margin-left: auto; margin-right: auto">
-                        <div class="grid-item">
-                            <div>
-                                <h6>Video (GauGAN360)</h6>
-                            </div>
-                        </div>
-                        <div class="embed-responsive embed-responsive-16by9" style="margin: 0;">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/2YwTkrmogDg"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
+                <p class="caption text-center">Pipeline</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <hr style="max-width: 768px;">
+                <h5 class="text-center">Denoising experts</h5>
+                <p>
+
+                    In diffusion models, image synthesis happens via an iterative denoising process that gradually
+                    generates images from random noise. In the figure shown below, we start from a complete random
+                    noise which is then gradually denoised in multiple steps to finally produce an image of a panda
+                    riding a bike. In conventional diffusion model training, a single model is trained to denoise
+                    the whole noise distribution. In our framework, we instead train an ensemble of expert denoisers
+                    that are specialized for denoising in different intervals of the generative process. The use of
+                    such expert denoisers leads to improved synthesis capabilities.
+
+                </p>
+                <div class="row justify-content-center">
+                    <img src="images/pipeline/motivation2_fig.jpg" style="height: 500px;margin-bottom: 8px;">
                 </div>
+                <p class="caption text-center">Pipeline</p>
+            </div>
+        </div>
 
 
-                <a class="carousel-control-prev" href="#videos" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#videos" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div> -->
-
-            <!--        <h5 class="text-center">Video (ECCV Supplementary Material)</h5>-->
-            <!--        <div class="embed-responsive embed-responsive-16by9" style="margin: 0;">-->
-            <!--            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/56aA_FaeAPY" allowfullscreen></iframe>-->
-            <!--        </div>-->
+        <!-- Outputs. -->
+        <hr style="max-width: 768px;">
+        <div class="container" style="max-width: 768px;">
+            <div class="text-center">
+                <h5>Results</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p> Compared to the open-source text to image methods (<a
+                            href='https://huggingface.co/spaces/stabilityai/stable-diffusion' target='_blank'>Stable
+                            diffusion</a>) and (<a href='https://arxiv.org/pdf/2204.06125.pdf'
+                            target='_blank'>DALL-E2</a>), our model conistently leads to improved synthesis quality.
+                    </p>
+                </div>
+            </div>
 
 
             <div class="row">
-                <div class="col-md-12">
-                    <hr style="max-width: 768px;">
-                    <h5 class="text-center">Pipeline</h5>
-                    <p>
-
-                        Our pipeline consists of a cascade of three diffusion models - a base model which can synthesize
-                        samples of 64x64 resolution, and two super-resolution stacks that can upsample the images
-                        progressively to 256x256 and 1024x1024 resolution respectively. Our models take an input caption
-                        and first compute T5 XXL embedding and text embedding. We optionally use CLIP image encodings
-                        which are computed from a reference image. These image embeddings can serve as a style vector.
-                        These embeddings are then fed into our cascaded diffusion models which progressively generate
-                        images of resolution 1024x1024.
-
-                    </p>
-                    <div class="row justify-content-center">
-                        <img src="images/pipeline/model_arch2.jpg" style="height: 500px;margin-bottom: 8px;">
-                    </div>
-                    <p class="caption text-center">Pipeline</p>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <b>
+                        <p class="caption text-center"> Stable diffusion </p>
+                    </b>
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <p class="caption text-center"> DALL-E2 </p>
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <p class="caption text-center"> eDiffi (ours) </p>
                 </div>
             </div>
 
             <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_stable_teapot"
+                        src="images/comparison_multiple_entitles/stable_diffusion/stable_teapots.jpeg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_dalle_teapot" src="images/comparison_multiple_entitles/dalle2/dalle_teapots.png"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_ediffi_teapot" src="images/comparison_multiple_entitles/ediffi/ours_teapots.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <p class="caption text-center"><i>There are two Chinese teapots on a table. One pot has a painting of a
+                    dragon,
+                    while the other pot has a painting of a panda.</i></p>
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_stable_grizzly"
+                        src="images/comparison_multiple_entitles/stable_diffusion/stable_grizzly.jpeg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_dalle_grizzly"
+                        src="images/comparison_multiple_entitles/dalle2/dalle_grizzly.png"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_ediffi_grizzly"
+                        src="images/comparison_multiple_entitles/ediffi/ours_grizzly.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <p class="caption text-center"><i>A photo of two cute teddy bears sitting on top of a grizzly bear in a
+                    beautiful forest. Highly detailed fantasy art, 4k, artstation</i></p>
+
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="text_stable_nvidia"
+                        src="images/comparison_text/stable_diffusion/stable_diffusion_nvidia_rocks.jpeg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_dalle_nvidia" src="images/comparison_text/dalle2/dalle_nvidia_rocks.png"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_ediffi_nvidia" src="images/comparison_text/ediffi/ours_nvidia_rocks.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <p class="caption text-center"><i>A photo of a golden retriever puppy wearing a green shirt. The shirt
+                    has text that says “NVIDIA rocks”. Background office. 4k dslr</i></p>
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="text_stable_monkey_friends"
+                        src="images/comparison_text/stable_diffusion/stable_diffusion_two_monkeys.jpeg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_dalle_monkey_friends" src="images/comparison_text/dalle2/dalle_best_friends.png"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_ediffi_monkey_friends" src="images/comparison_text/ediffi/ours_two_monkeys.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <p class="caption text-center"><i>A photo of two monkeys sitting on a tree. They are holding a wooden
+                    board that says “Best friends”, 4K dslr.</i></p>
+
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_stable_dish"
+                        src="images/comparison_long/stable_diffusion/stable_restaurant.jpeg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_dalle_dish" src="images/comparison_long/dalle2/dalle_restaurant.png"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_ediffi_dish" src="images/comparison_long/ediffi/ours_restaurant.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <p class="caption text-center"><i>A photo of a plate at a restaurant table with spaghetti and red sauce.
+                    There is sushi on top of the spaghetti. The dish is garnished with mint leaves. On the side,
+                    there is a glass with a purple drink, photorealistic, dslr.</i></p>
+
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_stable_cat_scooter"
+                        src="images/comparison_long/stable_diffusion/stable_cat_scooter.jpeg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_dalle_cat_scooter" src="images/comparison_long/dalle2/dalle_cat_scooter.png"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_ediffi_cat_scooter" src="images/comparison_long/ediffi/ours_cat_scooter.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <p class="caption text-center"><i>A close-up 4k dslr photo of a cat riding a scooter. It is wearing a
+                    plain shirt and has a bandana around its neck. It is wearing a scooter helmet. There are palm
+                    trees in the background.</i></p>
+        </div>
+
+        <!-- Style transfer. -->
+
+        <hr style="max-width: 768px;">
+        <div class="container" style="max-width: 768px;">
+            <div class="text-center">
+                <h5>Style transfer</h5>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
-                    <hr style="max-width: 768px;">
-                    <h5 class="text-center">Denoising experts</h5>
-                    <p>
-
-                        In diffusion models, image synthesis happens via an iterative denoising process that gradually
-                        generates images from random noise. In the figure shown below, we start from a complete random
-                        noise which is then gradually denoised in multiple steps to finally produce an image of a panda
-                        riding a bike. In conventional diffusion model training, a single model is trained to denoise
-                        the whole noise distribution. In our framework, we instead train an ensemble of expert denoisers
-                        that are specialized for denoising in different intervals of the generative process. The use of
-                        such expert denoisers leads to improved synthesis capabilities.
-
+                    <p> Our method enables style transfer when the CLIP image embeddings are used. From a reference
+                        style image, we first extract the CLIP image emebddings which can be used as a style
+                        reference vector. The left panel in the figure shown below is a style reference. The middle
+                        panel shows the results when style conditioning is enabled. The panel on the right shows the
+                        results when style conditioning is disabled. When style conditioning is used, our model
+                        generates outputs that are faithful both to the input style and also the input caption. When
+                        style conditioning is disabled, we generate images in natural style.
                     </p>
-                    <div class="row justify-content-center">
-                        <img src="images/pipeline/motivation2_fig.jpg" style="height: 500px;margin-bottom: 8px;">
-                    </div>
-                    <p class="caption text-center">Pipeline</p>
                 </div>
             </div>
 
 
-            <!-- Outputs. -->
-            <hr style="max-width: 768px;">
-            <div class="container" style="max-width: 768px;">
-                <div class="text-center">
-                    <h5>Results</h5>
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <b>
+                        <p class="caption text-center"> Reference style </p>
+                    </b>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p> Compared to the open-source text to image methods (<a
-                                href='https://huggingface.co/spaces/stabilityai/stable-diffusion' target='_blank'>Stable
-                                diffusion</a>) and (<a href='https://arxiv.org/pdf/2204.06125.pdf'
-                                target='_blank'>DALL-E2</a>), our model conistently leads to improved synthesis quality.
-                        </p>
-                    </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <p class="caption text-center"> Style conditioning enabled </p>
                 </div>
-
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <b>
-                            <p class="caption text-center"> Stable diffusion </p>
-                        </b>
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <p class="caption text-center"> DALL-E2 </p>
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <p class="caption text-center"> eDiffi (ours) </p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_stable_teapot"
-                            src="images/comparison_multiple_entitles/stable_diffusion/stable_teapots.jpeg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_dalle_teapot"
-                            src="images/comparison_multiple_entitles/dalle2/dalle_teapots.png"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_ediffi_teapot"
-                            src="images/comparison_multiple_entitles/ediffi/ours_teapots.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                </div>
-                <p class="caption text-center"><i>There are two Chinese teapots on a table. One pot has a painting of a
-                        dragon,
-                        while the other pot has a painting of a panda.</i></p>
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_stable_grizzly"
-                            src="images/comparison_multiple_entitles/stable_diffusion/stable_grizzly.jpeg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_dalle_grizzly"
-                            src="images/comparison_multiple_entitles/dalle2/dalle_grizzly.png"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_ediffi_grizzly"
-                            src="images/comparison_multiple_entitles/ediffi/ours_grizzly.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                </div>
-                <p class="caption text-center"><i>A photo of two cute teddy bears sitting on top of a grizzly bear in a
-                        beautiful forest. Highly detailed fantasy art, 4k, artstation</i></p>
-
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="text_stable_nvidia"
-                            src="images/comparison_text/stable_diffusion/stable_diffusion_nvidia_rocks.jpeg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_dalle_nvidia" src="images/comparison_text/dalle2/dalle_nvidia_rocks.png"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_ediffi_nvidia" src="images/comparison_text/ediffi/ours_nvidia_rocks.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                </div>
-                <p class="caption text-center"><i>A photo of a golden retriever puppy wearing a green shirt. The shirt
-                        has text that says “NVIDIA rocks”. Background office. 4k dslr</i></p>
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="text_stable_monkey_friends"
-                            src="images/comparison_text/stable_diffusion/stable_diffusion_two_monkeys.jpeg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_dalle_monkey_friends"
-                            src="images/comparison_text/dalle2/dalle_best_friends.png" style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_ediffi_monkey_friends"
-                            src="images/comparison_text/ediffi/ours_two_monkeys.jpg" style="margin: 8px;width: 100%;">
-                    </div>
-                </div>
-                <p class="caption text-center"><i>A photo of two monkeys sitting on a tree. They are holding a wooden
-                        board that says “Best friends”, 4K dslr.</i></p>
-
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_stable_dish"
-                            src="images/comparison_long/stable_diffusion/stable_restaurant.jpeg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_dalle_dish" src="images/comparison_long/dalle2/dalle_restaurant.png"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_ediffi_dish" src="images/comparison_long/ediffi/ours_restaurant.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                </div>
-                <p class="caption text-center"><i>A photo of a plate at a restaurant table with spaghetti and red sauce.
-                        There is sushi on top of the spaghetti. The dish is garnished with mint leaves. On the side,
-                        there is a glass with a purple drink, photorealistic, dslr.</i></p>
-
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_stable_cat_scooter"
-                            src="images/comparison_long/stable_diffusion/stable_cat_scooter.jpeg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_dalle_cat_scooter" src="images/comparison_long/dalle2/dalle_cat_scooter.png"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_ediffi_cat_scooter" src="images/comparison_long/ediffi/ours_cat_scooter.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                </div>
-                <p class="caption text-center"><i>A close-up 4k dslr photo of a cat riding a scooter. It is wearing a
-                        plain shirt and has a bandana around its neck. It is wearing a scooter helmet. There are palm
-                        trees in the background.</i></p>
-            </div>
-
-            <!-- Style transfer. -->
-
-            <hr style="max-width: 768px;">
-            <div class="container" style="max-width: 768px;">
-                <div class="text-center">
-                    <h5>Style transfer</h5>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p> Our method enables style transfer when the CLIP image embeddings are used. From a reference
-                            style image, we first extract the CLIP image emebddings which can be used as a style
-                            reference vector. The left panel in the figure shown below is a style reference. The middle
-                            panel shows the results when style conditioning is enabled. The panel on the right shows the
-                            results when style conditioning is disabled. When style conditioning is used, our model
-                            generates outputs that are faithful both to the input style and also the input caption. When
-                            style conditioning is disabled, we generate images in natural style.
-                        </p>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <b>
-                            <p class="caption text-center"> Reference style </p>
-                        </b>
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <p class="caption text-center"> Style conditioning enabled </p>
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <p class="caption text-center"> Style conditioning disabled </p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_style_two_pandas_reference"
-                            src="images/clip_img_conditioning/two_pandas_reference.jpeg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_style_two_pandas_style"
-                            src="images/clip_img_conditioning/two_pandas_conditioned.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_style_two_pandas_nostyle" src="images/clip_img_conditioning/two_pandas.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                </div>
-                <p class="caption text-center"><i>A photo of two pandas walking on a road.</i></p>
-
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_style_rabbit_reference"
-                            src="images/clip_img_conditioning/rabbit_queen_reference.jpeg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_style_rabbit_style"
-                            src="images/clip_img_conditioning/rabbit_queen_conditioned.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_style_rabbit_nostyle" src="images/clip_img_conditioning/rabbit_queen.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                </div>
-                <p class="caption text-center"><i>A detailed oil painting of a beautiful rabbit queen wearing a royal
-                        gown in a palace. She is looking outside the window, artistic.</i></p>
-
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_style_rabbit_reference"
-                            src="images/clip_img_conditioning/dog_trumpet_reference.jpeg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_style_rabbit_style"
-                            src="images/clip_img_conditioning/dog_trumpet_conditioned.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_style_rabbit_nostyle" src="images/clip_img_conditioning/dog_trumpet.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                </div>
-                <p class="caption text-center"><i>A dslr photo of a dog playing trumpet from the top of a mountain.</i>
-                </p>
-
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_style_teddy_bear_reference"
-                            src="images/clip_img_conditioning/teddy_bear_reference.jpeg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_style_teddy_bear_style"
-                            src="images/clip_img_conditioning/teddy_bear_conditioned.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 33%;">
-                        <img id="comparison_style_teddy_bear_nostyle" src="images/clip_img_conditioning/teddy_bear.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                </div>
-                <p class="caption text-center"><i>A photo of a teddy bear wearing a casual plain white shirt surfing in
-                        the ocean.</i>
-                </p>
-            </div>
-
-            <!-- Paint with words. -->
-
-            <hr style="max-width: 768px;">
-            <div class="container" style="max-width: 768px;">
-                <div class="text-center">
-                    <h5>Paint with words</h5>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p> Our method allows users to control the location of objects mentioned in the text prompt by
-                            selecting phrases and scribbling them on the image. The model then makes use of the prompt
-                            along with the maps to generate images that can consistent both with the caption and the
-                            input map.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <video height=350px controls muted loop
-                        style="vertical-align: top; margin-left: auto; margin-right: auto">
-                        <source src="videos/paint_videos/portal.mp4" type="video/mp4">
-                    </video>
-                </div>
-
-                <div class="row">
-                    <video height=350px controls muted loop
-                        style="vertical-align: top; margin-left: auto; margin-right: auto">
-                        <source src="videos/paint_videos/halloween.mp4" type="video/mp4">
-                    </video>
-                </div>
-
-                <div class="row">
-                    <video height=350px controls muted loop
-                        style="vertical-align: top; margin-left: auto; margin-right: auto">
-                        <source src="videos/paint_videos/aurora.mp4" type="video/mp4">
-                    </video>
-                </div>
-
-                <div class="row">
-                    <video height=350px controls muted loop
-                        style="vertical-align: top; margin-left: auto; margin-right: auto">
-                        <source src="videos/paint_videos/monster.mp4" type="video/mp4">
-                    </video>
-                </div>
-
-                <div class="row">
-                    <video height=350px controls muted loop
-                        style="vertical-align: top; margin-left: auto; margin-right: auto">
-                        <source src="videos/paint_videos/rabbit_mage.mp4" type="video/mp4">
-                    </video>
-                </div>
-
-                <div class="row">
-                    <video height=350px controls muted loop
-                        style="vertical-align: top; margin-left: auto; margin-right: auto">
-                        <source src="videos/paint_videos/rainbow.mp4" type="video/mp4">
-                    </video>
-                </div>
-
-                <div class="row">
-                    <video height=350px controls muted loop
-                        style="vertical-align: top; margin-left: auto; margin-right: auto">
-                        <source src="videos/paint_videos/squirrel.mp4" type="video/mp4">
-                    </video>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <p class="caption text-center"> Style conditioning disabled </p>
                 </div>
             </div>
 
-            <!-- Effect of using denoising experts. -->
-
-            <hr style="max-width: 768px;">
-            <div class="container" style="max-width: 768px;">
-                <div class="text-center">
-                    <h5>Benefit of using denoising experts</h5>
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_style_two_pandas_reference"
+                        src="images/clip_img_conditioning/two_pandas_reference.jpeg" style="margin: 8px;width: 100%;">
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p> We illustrate the benefit of using denoising experts by visualizing samples generated by
-                            our approach and comparing it with a baseline that does not use any denoising experts.
-                            The left two panels on the figure below denotes a baseline not using any experts, while
-                            the right two panels show the results obtaining by using our expert models. We find that
-                            we can greately improve on faithfullness to the input text by using denoising experts.
-                        </p>
-                    </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_style_two_pandas_style"
+                        src="images/clip_img_conditioning/two_pandas_conditioned.jpg" style="margin: 8px;width: 100%;">
                 </div>
-
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 50%;">
-                        <b>
-                            <p class="caption text-center"> Baseline </p>
-                        </b>
-                    </div>
-                    <div class="column" style="margin: auto;width: 50%;">
-                        <p class="caption text-center"> eDiffi </p>
-                    </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_style_two_pandas_nostyle" src="images/clip_img_conditioning/two_pandas.jpg"
+                        style="margin: 8px;width: 100%;">
                 </div>
+            </div>
+            <p class="caption text-center"><i>A photo of two pandas walking on a road.</i></p>
 
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 24%;">
-                        <img id="comparison_stable_teapot" src="images/model_size_comparison/base/teddy_bear/img_0.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 24%;">
-                        <img id="comparison_dalle_teapot" src="images/model_size_comparison/base/teddy_bear/img_1.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 24%;">
-                        <img id="comparison_ediffi_teapot"
-                            src="images/model_size_comparison/ediffi/teddy_bear/img_0.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 24%;">
-                        <img id="comparison_ediffi_teapot"
-                            src="images/model_size_comparison/ediffi/teddy_bear/img_1.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_style_rabbit_reference"
+                        src="images/clip_img_conditioning/rabbit_queen_reference.jpeg" style="margin: 8px;width: 100%;">
                 </div>
-                <p class="caption text-center"><i>A 4k dslr photo of two teddy bears wearing a sports jersey
-                        with
-                        the text “eDiffi” written on it. They are on a soccer field.</i></p>
-
-
-                <div class="row">
-                    <div class="column" style="margin: auto;width: 24%;">
-                        <img id="comparison_stable_teapot" src="images/model_size_comparison/base/monkey_bike/img_0.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 24%;">
-                        <img id="comparison_dalle_teapot" src="images/model_size_comparison/base/monkey_bike/img_1.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 24%;">
-                        <img id="comparison_ediffi_teapot"
-                            src="images/model_size_comparison/ediffi/monkey_bike/img_0.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
-                    <div class="column" style="margin: auto;width: 24%;">
-                        <img id="comparison_ediffi_teapot"
-                            src="images/model_size_comparison/ediffi/monkey_bike/img_1.jpg"
-                            style="margin: 8px;width: 100%;">
-                    </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_style_rabbit_style"
+                        src="images/clip_img_conditioning/rabbit_queen_conditioned.jpg"
+                        style="margin: 8px;width: 100%;">
                 </div>
-                <p class="caption text-center"><i>An origami of a monkey dressed as a monk riding a bike on a
-                        mountain.</i></p>
-
-                <!-- Comparison between T5 and CLIP embeddigs. -->
-
-                <hr style="max-width: 768px;">
-                <div class="container" style="max-width: 768px;">
-                    <div class="text-center">
-                        <h5>Compairson between T5 and CLIP text embeddings</h5>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p> We study the effect of using CLIP text embeddings and T5 embeddings in isolation, and
-                                compare with the full system that uses CLIP + T5 embeddings. We observe that images
-                                generated in the CLIP-text-only setting often contain correct foreground objects and
-                                they tend to miss fine-grain details. Images generated in the T5-text-only setting are
-                                of higher quality, but they sometimes contain incorrect objects. Using CLIP+T5 results
-                                in best performance.
-                            </p>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <b>
-                                <p class="caption text-center"> CLIP text only </p>
-                            </b>
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <p class="caption text-center"> T5 only </p>
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <p class="caption text-center"> CLIP + T5 </p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_stable_teapot" src="images/t5_vs_clip/corgi_text_clip.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_dalle_teapot" src="images/t5_vs_clip/corgi_text_t5.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_ediffi_teapot" src="images/t5_vs_clip/corgi_text.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                    </div>
-                    <p class="caption text-center"><i>A photo of a cute corgi wearing a beret holding a sign
-                            that
-                            says
-                            “Diffusion Models”. There is Eiffel tower in the background.</i></p>
-
-
-                    <div class="row">
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_stable_teapot" src="images/t5_vs_clip/parrots_singing_clip.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_dalle_teapot" src="images/t5_vs_clip/parrots_singing_t5.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_ediffi_teapot" src="images/t5_vs_clip/parrots_singing.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                    </div>
-                    <p class="caption text-center"><i>A photo of a red parrot, a blue parrot and a green parrot singing
-                            at a concert in front of a microphone. Colorful lights in the background.</i></p>
-
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_style_rabbit_nostyle" src="images/clip_img_conditioning/rabbit_queen.jpg"
+                        style="margin: 8px;width: 100%;">
                 </div>
+            </div>
+            <p class="caption text-center"><i>A detailed oil painting of a beautiful rabbit queen wearing a royal
+                    gown in a palace. She is looking outside the window, artistic.</i></p>
 
-                <!-- Style variations. -->
 
-                <hr style="max-width: 768px;">
-                <div class="container" style="max-width: 768px;">
-                    <div class="text-center">
-                        <h5>Style Variations</h5>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p> Our method can also generate images with different styles, which can be specified in the
-                                input caption.
-                            </p>
-                        </div>
-                    </div>
-
-                    <p class="caption text-center"><i>A photo of penguin working as a fruit vendor in a tropical
-                            village.</i></p>
-
-                    <div class="row">
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_stable_teapot" src="images/style_variants/real.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_dalle_teapot" src="images/style_variants/rembrandt.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_ediffi_teapot" src="images/style_variants/sketch.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <b>
-                                <p class="caption text-center"> Real photo </p>
-                            </b>
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <p class="caption text-center"> Rembrandt </p>
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <p class="caption text-center"> Pencil sketch </p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_stable_teapot" src="images/style_variants/van_gogh.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_dalle_teapot" src="images/style_variants/hieroglyphics.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_ediffi_teapot" src="images/style_variants/abstract_cubism.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <b>
-                                <p class="caption text-center"> Vincent van Gogh </p>
-                            </b>
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <p class="caption text-center"> Egyptian tomb hieroglyphics </p>
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <p class="caption text-center"> Abstract cubism </p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_stable_teapot" src="images/style_variants/pixel_art.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_dalle_teapot" src="images/style_variants/hokusai.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <img id="comparison_ediffi_teapot" src="images/style_variants/mahubani.jpg"
-                                style="margin: 8px;width: 100%;">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <b>
-                                <p class="caption text-center"> Pixel art </p>
-                            </b>
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <p class="caption text-center"> Hokusai </p>
-                        </div>
-                        <div class="column" style="margin: auto;width: 33%;">
-                            <p class="caption text-center"> Madhubani </p>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_style_rabbit_reference"
+                        src="images/clip_img_conditioning/dog_trumpet_reference.jpeg" style="margin: 8px;width: 100%;">
                 </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_style_rabbit_style"
+                        src="images/clip_img_conditioning/dog_trumpet_conditioned.jpg" style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_style_rabbit_nostyle" src="images/clip_img_conditioning/dog_trumpet.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <p class="caption text-center"><i>A dslr photo of a dog playing trumpet from the top of a mountain.</i>
+            </p>
 
 
-                <!-- Citation. -->
-                <hr style="max-width: 768px;">
-                <div class="container" style="max-width: 768px;">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2>Citation</h2>
-                        </div>
-                    </div>
-                    <div class="code-box-copy" style="font-size: 0.9rem !important; max-width: 768px; margin: 0 auto;">
-                        <button class="code-box-copy__btn" data-clipboard-target="#citation" title="Copy"
-                            style="opacity: 1;"></button>
-                        <pre><code class="language-bib" style="font-size: 0.9rem;" id="citation">@article{balaji2022ediffi,
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_style_teddy_bear_reference"
+                        src="images/clip_img_conditioning/teddy_bear_reference.jpeg" style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_style_teddy_bear_style"
+                        src="images/clip_img_conditioning/teddy_bear_conditioned.jpg" style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_style_teddy_bear_nostyle" src="images/clip_img_conditioning/teddy_bear.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <p class="caption text-center"><i>A photo of a teddy bear wearing a casual plain white shirt surfing in
+                    the ocean.</i>
+            </p>
+        </div>
+
+        <!-- Paint with words. -->
+
+        <hr style="max-width: 768px;">
+        <div class="container" style="max-width: 768px;">
+            <div class="text-center">
+                <h5>Paint with words</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p> Our method allows users to control the location of objects mentioned in the text prompt by
+                        selecting phrases and scribbling them on the image. The model then makes use of the prompt
+                        along with the maps to generate images that can consistent both with the caption and the
+                        input map.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <video height=350px controls muted loop
+                    style="vertical-align: top; margin-left: auto; margin-right: auto">
+                    <source src="videos/paint_videos/portal.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="row">
+                <video height=350px controls muted loop
+                    style="vertical-align: top; margin-left: auto; margin-right: auto">
+                    <source src="videos/paint_videos/halloween.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="row">
+                <video height=350px controls muted loop
+                    style="vertical-align: top; margin-left: auto; margin-right: auto">
+                    <source src="videos/paint_videos/aurora.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="row">
+                <video height=350px controls muted loop
+                    style="vertical-align: top; margin-left: auto; margin-right: auto">
+                    <source src="videos/paint_videos/monster.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="row">
+                <video height=350px controls muted loop
+                    style="vertical-align: top; margin-left: auto; margin-right: auto">
+                    <source src="videos/paint_videos/rabbit_mage.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="row">
+                <video height=350px controls muted loop
+                    style="vertical-align: top; margin-left: auto; margin-right: auto">
+                    <source src="videos/paint_videos/rainbow.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="row">
+                <video height=350px controls muted loop
+                    style="vertical-align: top; margin-left: auto; margin-right: auto">
+                    <source src="videos/paint_videos/squirrel.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <!-- Effect of using denoising experts. -->
+
+        <hr style="max-width: 768px;">
+        <div class="container" style="max-width: 768px;">
+            <div class="text-center">
+                <h5>Benefit of using denoising experts</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p> We illustrate the benefit of using denoising experts by visualizing samples generated by
+                        our approach and comparing it with a baseline that does not use any denoising experts.
+                        The left two panels on the figure below denotes a baseline not using any experts, while
+                        the right two panels show the results obtaining by using our expert models. We find that
+                        we can greately improve on faithfullness to the input text by using denoising experts.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 50%;">
+                    <b>
+                        <p class="caption text-center"> Baseline </p>
+                    </b>
+                </div>
+                <div class="column" style="margin: auto;width: 50%;">
+                    <p class="caption text-center"> eDiffi </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 24%;">
+                    <img id="comparison_stable_teapot" src="images/model_size_comparison/base/teddy_bear/img_0.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 24%;">
+                    <img id="comparison_dalle_teapot" src="images/model_size_comparison/base/teddy_bear/img_1.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 24%;">
+                    <img id="comparison_ediffi_teapot" src="images/model_size_comparison/ediffi/teddy_bear/img_0.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 24%;">
+                    <img id="comparison_ediffi_teapot" src="images/model_size_comparison/ediffi/teddy_bear/img_1.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <p class="caption text-center"><i>A 4k dslr photo of two teddy bears wearing a sports jersey
+                    with
+                    the text “eDiffi” written on it. They are on a soccer field.</i></p>
+
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 24%;">
+                    <img id="comparison_stable_teapot" src="images/model_size_comparison/base/monkey_bike/img_0.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 24%;">
+                    <img id="comparison_dalle_teapot" src="images/model_size_comparison/base/monkey_bike/img_1.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 24%;">
+                    <img id="comparison_ediffi_teapot" src="images/model_size_comparison/ediffi/monkey_bike/img_0.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 24%;">
+                    <img id="comparison_ediffi_teapot" src="images/model_size_comparison/ediffi/monkey_bike/img_1.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <p class="caption text-center"><i>An origami of a monkey dressed as a monk riding a bike on a
+                    mountain.</i></p>
+        </div>
+
+        <!-- Comparison between T5 and CLIP embeddigs. -->
+
+        <hr style="max-width: 768px;">
+        <div class="container" style="max-width: 768px;">
+            <div class="text-center">
+                <h5>Compairson between T5 and CLIP text embeddings</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p> We study the effect of using CLIP text embeddings and T5 embeddings in isolation, and
+                        compare with the full system that uses CLIP + T5 embeddings. We observe that images
+                        generated in the CLIP-text-only setting often contain correct foreground objects and
+                        they tend to miss fine-grain details. Images generated in the T5-text-only setting are
+                        of higher quality, but they sometimes contain incorrect objects. Using CLIP+T5 results
+                        in best performance.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <b>
+                        <p class="caption text-center"> CLIP text only </p>
+                    </b>
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <p class="caption text-center"> T5 only </p>
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <p class="caption text-center"> CLIP + T5 </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_stable_teapot" src="images/t5_vs_clip/corgi_text_clip.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_dalle_teapot" src="images/t5_vs_clip/corgi_text_t5.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_ediffi_teapot" src="images/t5_vs_clip/corgi_text.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <p class="caption text-center"><i>A photo of a cute corgi wearing a beret holding a sign
+                    that
+                    says
+                    “Diffusion Models”. There is Eiffel tower in the background.</i></p>
+
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_stable_teapot" src="images/t5_vs_clip/parrots_singing_clip.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_dalle_teapot" src="images/t5_vs_clip/parrots_singing_t5.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_ediffi_teapot" src="images/t5_vs_clip/parrots_singing.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <p class="caption text-center"><i>A photo of a red parrot, a blue parrot and a green parrot singing
+                    at a concert in front of a microphone. Colorful lights in the background.</i></p>
+
+        </div>
+
+        <!-- Style variations. -->
+
+        <hr style="max-width: 768px;">
+        <div class="container" style="max-width: 768px;">
+            <div class="text-center">
+                <h5>Style Variations</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p> Our method can also generate images with different styles, which can be specified in the
+                        input caption.
+                    </p>
+                </div>
+            </div>
+
+            <p class="caption text-center"><i>A photo of penguin working as a fruit vendor in a tropical
+                    village.</i></p>
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_stable_teapot" src="images/style_variants/real.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_dalle_teapot" src="images/style_variants/rembrandt.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_ediffi_teapot" src="images/style_variants/sketch.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <b>
+                        <p class="caption text-center"> Real photo </p>
+                    </b>
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <p class="caption text-center"> Rembrandt </p>
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <p class="caption text-center"> Pencil sketch </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_stable_teapot" src="images/style_variants/van_gogh.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_dalle_teapot" src="images/style_variants/hieroglyphics.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_ediffi_teapot" src="images/style_variants/abstract_cubism.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <b>
+                        <p class="caption text-center"> Vincent van Gogh </p>
+                    </b>
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <p class="caption text-center"> Egyptian tomb hieroglyphics </p>
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <p class="caption text-center"> Abstract cubism </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_stable_teapot" src="images/style_variants/pixel_art.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_dalle_teapot" src="images/style_variants/hokusai.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <img id="comparison_ediffi_teapot" src="images/style_variants/mahubani.jpg"
+                        style="margin: 8px;width: 100%;">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column" style="margin: auto;width: 33%;">
+                    <b>
+                        <p class="caption text-center"> Pixel art </p>
+                    </b>
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <p class="caption text-center"> Hokusai </p>
+                </div>
+                <div class="column" style="margin: auto;width: 33%;">
+                    <p class="caption text-center"> Madhubani </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Citation. -->
+        <hr style="max-width: 768px;">
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Citation</h2>
+                </div>
+            </div>
+            <div class="code-box-copy" style="font-size: 0.9rem !important; max-width: 768px; margin: 0 auto;">
+                <button class="code-box-copy__btn" data-clipboard-target="#citation" title="Copy"
+                    style="opacity: 1;"></button>
+                <pre><code class="language-bib" style="font-size: 0.9rem;" id="citation">@article{balaji2022ediffi,
     title={eDiffi: Text-to-Image Diffusion Models with Ensemble of Expert Denoisers},
     author={Yogesh Balaji and Seungjun Nah and Xun Huang and Arash Vahdat and Jiaming Song and Karsten Kreis and Miika Aittala and Timo Aila and Samuli Laine and Bryan Catanzaro and Tero Karras and Ming-Yu Liu},
     journal={arXiv preprint arXiv:2211.01324},
     year={2022}
                     </code></pre>
-                    </div>
-                </div>
+            </div>
+        </div>
+    </div>
 
-                <footer class="text-muted">
-                    <div class="container">
-                        <p class="float-right">
-                            <a href="#">Back to top</a>
-                        </p>
-                    </div>
-                </footer>
+
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+        </div>
+    </footer>
 
 </body>
 
